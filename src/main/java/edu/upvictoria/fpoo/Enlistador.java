@@ -17,13 +17,17 @@ public class Enlistador {
         }
         for (String[] arrayTemp : contenidoSpliteado) {
             String[] calificaciones = Arrays.copyOfRange(arrayTemp, 2, arrayTemp.length);
-            float promedio, suma = 0;
+            float promedio=0, suma = 0;
             for (String calificacion : calificaciones) {
-                if(Integer.parseInt(calificacion)!=60){
+                if(Integer.parseInt(calificacion)>=70){
                     suma += Integer.parseInt(calificacion);
+                }else{
+                    promedio = 60;
                 }
             }
-            promedio = suma / calificaciones.length;
+            if(promedio == 0){
+                promedio = suma / calificaciones.length;
+            }
             if (alumnos.isEmpty()) {
                 alumno = new Alumno(arrayTemp[0], arrayTemp[1]);
                 alumno.cargarMateria(promedio);
@@ -72,6 +76,7 @@ public class Enlistador {
                 }else if(contenidoTemporal.size()>1){
                     contenidoGlobal = contenidoTemporal;
                 }else{
+                    System.err.println("El contenido de el archivo no es valido:");
                     System.out.println(contenidoTemporal);
                     System.exit(1);
                 }
@@ -82,8 +87,6 @@ public class Enlistador {
     }
 
     private static void insertarContenido(Leer leer, File doc2) {
-        ArrayList<String> contenidoTemporal;
-        ArrayList<String> contenidoGlobal;
         leer.leerContenidoArchivo(doc2);
         contenidoTemporal = leer.obtenerContenido();
         contenidoGlobal = new ArrayList<>();
@@ -97,5 +100,4 @@ public class Enlistador {
             }
         }
     }
-
 }

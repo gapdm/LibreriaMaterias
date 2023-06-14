@@ -16,6 +16,5 @@ public class App {
             separador = scanner.next();
             enlistar.acomodar(direccion,separador);
         }
-
     }
 }

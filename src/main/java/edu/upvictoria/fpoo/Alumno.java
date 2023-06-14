@@ -23,7 +23,7 @@ public class Alumno {
 
     public void cargarMateria(Float calificacion){
         calificaciones.add(calificacion);
-        if(calificacion<=60) {
+        if(calificacion<70) {
             numeroReprobadas++;
         }
         numeroMaterias++;
